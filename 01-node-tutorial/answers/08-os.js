@@ -1,11 +1,12 @@
 // OS
 
-// This should load the built in os module and display some interesting information from the resulting object 
-// As for all modules, you load a reference to it with a require statement in this case:
+// Should load the built in os module and display some interesting information from the resulting object 
+// Load a reference with a require statement
 
 // NOTE
+// const os = require('os')
 
-// const os = require('os') 
+// Tutorial code
 
 const os = require('os');
 
