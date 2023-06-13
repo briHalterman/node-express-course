@@ -6,7 +6,7 @@
 // This is to demonstrate that when a module is loaded with a require statement, anything in the mainline code of the loaded module runs.
 // The exported values from should be used in modules.js
 
-// Tutorial code
+//Tutorial
 
 const inforooTOCampers = 15;
 const sooperGroopCampers = 20;
