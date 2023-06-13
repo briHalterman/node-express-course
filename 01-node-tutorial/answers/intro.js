@@ -15,7 +15,7 @@ else {
     console.log('large number')
 };
 
-console.log('Hello Node')
+console.log(`Hey! This is one of my very frist node apps!!!`)
 
 // const amount = Math.floor(Math.random() * 101);
 
