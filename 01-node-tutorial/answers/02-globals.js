@@ -34,6 +34,6 @@
  console.log(process.env.MY_VAR);
 
  setTimeout(() => {
-    console.log('hello node')
- }, 5000);
+    console.log('Hello node!')
+ }, 1500);
 
