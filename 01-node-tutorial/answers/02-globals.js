@@ -1,11 +1,11 @@
 // GLOBALS 
 
-// This program should use console.log to write some globals to the screen. 
+// This program should use console.log to write some globals to the screen
 // Set an environment variable with the following command: export MY_VAR="Hi there!" 
 // The program should then use console.log to print out the values of __dirname (a global) 
 // and process.env.MY_VAR (process is also a global, and contains the environment variables you set.) 
-// You could print out other globals as well. 
-// For each of these programs, you invoke them with node to make sure they work.
+// You could print out other globals as well
+// For each of these programs, you invoke them with node to make sure they work
 
 // NOTES 
 

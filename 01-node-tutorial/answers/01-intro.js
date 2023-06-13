@@ -1,8 +1,8 @@
 // Intro
 
-// This program should use console.log to write something to the screen. 
-// While you are in the answers directory, run node intro to verify that the program runs. 
-// You can also put JavaScript logic in your program.
+// This program should use console.log to write something to the screen
+// While you are in the answers directory, run node intro to verify that the program runs
+// You can also put JavaScript logic in your program
 
 // Tutorial code
 
@@ -15,7 +15,7 @@ else {
     console.log('large number')
 };
 
-console.log(`Hey! This is one of my very frist node apps!!!`)
+console.log(`Hey! This is one of my very frist node apps!!!`);
 
 // const amount = Math.floor(Math.random() * 101);
 

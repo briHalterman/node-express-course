@@ -1,5 +1,6 @@
-// Names
+// NAMES
 
+// Module that you load, using require statements, from modules.js
 // Should export multiple values in an object
 // The exported values from should be used in modules.js
 
