@@ -13,5 +13,5 @@ const secret = 'SOOPER SECRET';
 const scott = 'Scott';
 const leo = 'Leo';
 
-console.log( scott, leo );
+module.exports = { scott, leo }
 

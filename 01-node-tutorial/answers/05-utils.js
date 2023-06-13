@@ -6,10 +6,9 @@
 
 // Tutorial code
 
-const name = 'Deto'
-
 const sayHi = (name) => {
     console.log(`Happy Bonnaroo ${name}!`);
 };
 
-console.log(sayHi)
+// export default
+module.exports = sayHi

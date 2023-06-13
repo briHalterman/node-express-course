@@ -1,4 +1,4 @@
-// Intro
+// INTRO
 
 // This program should use console.log to write something to the screen
 // While you are in the answers directory, run node intro to verify that the program runs
