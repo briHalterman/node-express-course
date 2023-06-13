@@ -31,7 +31,9 @@
  console.log(__dirname);
  console.log(__filename);
 
- setInterval(() => {
+ console.log(process.env.MY_VAR);
+
+ setTimeout(() => {
     console.log('hello node')
- }, 1000);
+ }, 5000);
 
