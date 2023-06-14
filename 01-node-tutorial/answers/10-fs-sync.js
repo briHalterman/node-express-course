@@ -1,4 +1,4 @@
-// FS SYNC
+// FS-SYNC
 
 // Should load writeFileSync and readFileSync from the fs module
 // Then use writeFileSync to write 3 lines to a file, ./temporary/fileA.txt, using the append flag for each line after the first
