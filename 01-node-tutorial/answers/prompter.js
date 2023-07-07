@@ -23,10 +23,10 @@ const getBody = (req, callback) => {
 // here, you could declare one or more variables to store what comes back from the form.
 
 const secretNumber = Math.floor(Math.random() * 101);
+let resultText = '';
 
-console.log(`Hello Node! Congratulations! Your number is ${secretNumber}...`);
+console.log(`Hello Node! Congratulations! Your number is ${secretNumber}`);
 
-let resultText = "";
 
 // here, you can change the form below to modify the input fields and what is displayed.
 // This is just ordinary html with string interpolation.
@@ -38,14 +38,11 @@ const form = () => {
   <p>${resultText}</p>
   <p>Guess an integer in numeric form, then press 'Submit Guess'</p>
   <form method="POST">
-  <input name="guess" type="number"></input>
-  <button type="submit">Submit Guess</button>
+    <input name="guess" type="number"></input>
+    <button type="submit">Submit Guess</button>
   </form>
   </body>
   `;
-
-  // console.log(`Your guess is ${guess}`);
-
 };
 
 const server = http.createServer((req, res) => {
@@ -57,8 +54,8 @@ const server = http.createServer((req, res) => {
 
       // here, you can add your own logic
 
-      const guessNumber = parseInt(body.guessNumber)
-      let resultText = '';
+      const guessNumber = parseInt(body.guess)
+      
       const handleGuess = (guess) => {
         if (guessNumber > secretNumber) {
           resultText = "Your guess is too high";
@@ -67,14 +64,16 @@ const server = http.createServer((req, res) => {
         } else if(guessNumber === secretNumber) {
           resultText = "You win!"
         } else {
-          resultText = "Trouble"
+          resultText = "Guess a number to play!"
         }
       };
 
-      // form();
-      // handleGuess();
+      // console.log(guessNumber);
 
-      console.log(resultText);
+      // form();
+      handleGuess();
+
+      console.log(`Your result is ${resultText}`);
 
 
       // if (body["guess"]) {
