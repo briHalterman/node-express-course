@@ -14,6 +14,12 @@
 
 const http = require('http');
 
+// const server = http.createServer((req, res) => {
+//     console.log(req)
+//     res.write('Welcome to our homepage')
+//     res.end()
+// })
+
 const server = http.createServer((req, res) => {
     if (req.url === '/') {
         res.end('Welcome to Bonnaroo')
