@@ -17,13 +17,13 @@ console.log('start');
 // fs.readFileSync;
 
 const fileA = readFileSync('./temporary/message.txt', 'utf8');
-// const fileB = readFileSync('./content/fileB.txt', 'utf8');
+const fileB = readFileSync('./content/fileB.txt', 'utf8');
 
 // console.log(fileA, fileB);
 
 writeFileSync(
     './temporary/fileA.txt',
-    `Here is the result : ${fileA}`,
+    `Here is the result : ${fileA}, ${second}`,
     { flag: 'a' }
 );
 
