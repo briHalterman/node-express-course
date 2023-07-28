@@ -12,31 +12,31 @@
 // NO WINDOW !!!!
 
 // __dirname    - path to current directory
-// console.log(__dirname)
+// console.log( __dirname )
 
 // __filename   - file name
-// console.log(__filename)
+// console.log( __filename )
 
-// require      - function to use modules (CommonJS)
-// console.log(require)
+// require      - function to use modules ( CommonJS )
+// console.log( require )
 
-// module       - info about current module (file)
-// console.log(module)
+// module       - info about current module ( file )
+// console.log( module )
 
 // process      - info about env where the prgram is being executed
-// console.log(process)
+// console.log( process )
 
  // Tutorial code
 
- console.log(__dirname);
- // console.log(__filename);
- // console.log(require)
- // console.log(module)
- // console.log(process)
+ console.log( __dirname );
+ // console.log( __filename );
+ // console.log( require );
+ // console.log( module );
+ // console.log( process );
 
- console.log(process.env.MY_VAR);
+ console.log( process.env.MY_VAR );
 
  setTimeout(() => {
-    console.log('Hello node!')
+    console.log( 'Hello node!' );
  }, 1500);
 

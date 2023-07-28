@@ -8,16 +8,16 @@
 
 //Tutorial
 
-const inforooTOCampers = 15;
+const inforooTOCampers = 4;
 const sooperGroopCampers = 20;
-const familyCampers = 4;
-const accessCampers = 4;
-const vipCampers = 12;
-const rvCampers = 20;
-const gaCampers = 100;
+const familyCampers = 3;
+const accessCampers = 3;
+const vipCampers = 2;
+const rvCampers = 14;
+const gaCampers = 0;
 
 function addValues() {
-    console.log(`I will have ${inforooTOCampers + sooperGroopCampers + familyCampers + accessCampers + vipCampers + rvCampers + gaCampers} friends at Bonnaroo this year!`)
+    console.log(`I will have ${ inforooTOCampers + sooperGroopCampers + familyCampers + accessCampers + vipCampers + rvCampers + gaCampers } friends at Bonnaroo this year!`);
 }
 
 addValues();

@@ -21,14 +21,14 @@
 
 // Tutorial code
 
-const names = require('./04-names');
-const sayHi = require('./05-utils');
-const data = require('./06-alt-flavor');
-// require('./07-mind-grenade');
+const names = require( './names' );
+const sayHi = require( './utils' );
+const data = require( './alternative-flavor' );
+// require( './mind-grenade' );
 
-// console.log(data)
+// console.log( data );
 
-sayHi('Deto');
+sayHi( 'Deto' );
 
-console.log(names);
-console.log(data);
+console.log( names );
+console.log( data );
