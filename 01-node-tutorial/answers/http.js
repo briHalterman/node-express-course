@@ -14,17 +14,23 @@
 
 const http = require('http');
 
+// const server = http.createServer((req, res) => {
+//     console.log(req);
+//     res.write('Welcome to our homepage');
+//     res.end();
+// })
+
 const server = http.createServer((req, res) => {
     if (req.url === '/') {
-        res.end('Welcome to Bonnaroo')
+        res.end('Welcome to Bonnaroo');
     } else if (req.url === '/about') {
-        res.end('Here is our story')
+        res.end('Here is our story');
     }
     res.end(`
         <h1>Bonna-oops!</h1>
         <p>You got lost somewhere on the farm.</p>
         <a href="/">Back to Camp!</a>
-    `)
-})
+    `);
+});
 
 server.listen(3000);

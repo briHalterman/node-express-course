@@ -29,11 +29,14 @@
  // Tutorial code
 
  console.log(__dirname);
- console.log(__filename);
+ // console.log(__filename);
+ // console.log(require);
+ // console.log(module);
+ // console.log(process);
 
  console.log(process.env.MY_VAR);
 
  setTimeout(() => {
-    console.log('Hello node!')
+    console.log('Hello node!');
  }, 1500);
 

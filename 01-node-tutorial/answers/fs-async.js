@@ -42,29 +42,31 @@ writeFile(
     './temporary/fileB.txt',
     'Oh Baby, You!',
     (err, result) => {
-        console.log('at line 1')
+        console.log('at line 1');
         if (err) {
-            console.log('an error happened at line 1', err)
+            console.log('an error happened at line 1', err);
         } else {
-            writeFile('./temporary/fileB.txt',
+            writeFile(
+            './temporary/fileB.txt',
             ' You got what I need!', 
-            { flag: 'a'},
+            { flag: 'a' },
             (err, result) => {
-                console.log('at line 2')
+                console.log('at line 2');
                 if (err) {
-                    console.log('an error happened at line 2', err)
+                    console.log('an error happened at line 2', err);
                 } else {
-                    writeFile('./temporary/fileB.txt',
+                    writeFile(
+                    './temporary/fileB.txt',
                     ` When you say he's just a friend, and you say he's just a friend.`, 
                     { flag: 'a' }, 
                     (err, result) => {
-                        console.log('at line 3')
-                        if (err) {
-                            console.log('an error happened at line 3', err)
+                        console.log('at line 3');
+                        if  (err) {
+                            console.log('an error happened at line 3', err);
                         }
-                    })
+                    });
                 }
-            })  
+            });  
         }
     }
 );
