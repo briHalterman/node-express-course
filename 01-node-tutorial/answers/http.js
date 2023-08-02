@@ -12,19 +12,19 @@
 
 // Tutorial code
 
-const http = require( 'http' );
+const http = require('http');
 
-// const server = http.createServer(( req, res ) => {
-//     console.log( req );
-//     res.write( 'Welcome to our homepage' );
+// const server = http.createServer((req, res) => {
+//     console.log(req);
+//     res.write('Welcome to our homepage');
 //     res.end();
 // })
 
-const server = http.createServer(( req, res ) => {
-    if ( req.url === '/' ) {
-        res.end( 'Welcome to Bonnaroo' );
-    } else if ( req.url === '/about' ) {
-        res.end( 'Here is our story' );
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+        res.end('Welcome to Bonnaroo');
+    } else if (req.url === '/about') {
+        res.end('Here is our story');
     }
     res.end(`
         <h1>Bonna-oops!</h1>
@@ -33,4 +33,4 @@ const server = http.createServer(( req, res ) => {
     `);
 });
 
-server.listen( 3000 );
+server.listen(3000);

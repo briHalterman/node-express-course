@@ -24,14 +24,14 @@
 
 const amount = 1;
 
-if( amount < 10 ) {
-    console.log( 'small number' );
+if(amount < 10) {
+    console.log('small number');
 }
 else {
-    console.log( 'large number' );
+    console.log('large number');
 };
 
-console.log( `Hey! This is one of my very frist node apps!!!` );
+console.log(`Hey! This is one of my very frist node apps!!!`);
 
 
 

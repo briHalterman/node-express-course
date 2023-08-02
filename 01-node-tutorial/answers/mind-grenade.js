@@ -17,7 +17,7 @@ const rvCampers = 14;
 const gaCampers = 0;
 
 function addValues() {
-    console.log(`I will have ${ inforooTOCampers + sooperGroopCampers + familyCampers + accessCampers + vipCampers + rvCampers + gaCampers } friends at Bonnaroo this year!`);
+    console.log(`I will have ${inforooTOCampers + sooperGroopCampers + familyCampers + accessCampers + vipCampers + rvCampers + gaCampers} friends at Bonnaroo this year!`);
 }
 
 addValues();

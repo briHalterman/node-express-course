@@ -7,7 +7,7 @@
 
 // Tutorial code
 
-module.exports.items = [ 'What', 'Which', 'This', 'That', 'The Other' ];
+module.exports.items = ['What', 'Which', 'This', 'That', 'The Other'];
 
 const person = {
     name: 'Pizza Buddy',

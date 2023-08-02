@@ -16,57 +16,57 @@
 
 // Here is how you might start:
 
-// const { writeFile } = require( 'fs' ); 
-// console.log( "at start" );   
+// const { writeFile } = require('fs'); 
+// console.log("at start");   
 // writeFile(
 //     './temporary/output.txt', 
-//     'This is line 1\n', ( err, result ) => {
-//         console.log( "at point 1" )  
-//         if ( err ) {           
-//             console.log( "This error happened: ", err );
+//     'This is line 1\n', (err, result) => {
+//         console.log("at point 1")  
+//         if (err) {           
+//             console.log("This error happened: ", err);
 //     } else {       
 //         // here you write your next line     
 //     }   
 // })  
 
-// console.log( 'at end' ); 
+// console.log('at end'); 
 
 
-const { writeFile } = require( 'fs' );
+const { writeFile } = require('fs');
 
-console.log( 'at start' );
+console.log('at start');
 
 // “callback hell”
 
 writeFile(
     './temporary/fileB.txt',
     'Oh Baby, You!',
-    ( err, result ) => {
+    (err, result) => {
         console.log('at line 1');
-        if ( err ) {
-            console.log( 'an error happened at line 1', err );
+        if (err) {
+            console.log('an error happened at line 1', err);
         } else {
             writeFile(
             './temporary/fileB.txt',
             ' You got what I need!', 
             { flag: 'a' },
-            ( err, result ) => {
-                console.log( 'at line 2' );
-                if ( err ) {
-                    console.log( 'an error happened at line 2', err );
+            (err, result) => {
+                console.log('at line 2');
+                if (err) {
+                    console.log('an error happened at line 2', err);
                 } else {
                     writeFile(
                     './temporary/fileB.txt',
                     ` When you say he's just a friend, and you say he's just a friend.`, 
                     { flag: 'a' }, 
-                    ( err, result ) => {
-                        console.log( 'at line 3' );
-                        if  (err ) {
-                            console.log( 'an error happened at line 3', err );
+                    (err, result) => {
+                        console.log('at line 3');
+                        if  (err) {
+                            console.log('an error happened at line 3', err);
                         }
-                    })
+                    });
                 }
-            })  
+            });  
         }
     }
 );

@@ -1,1 +1,1 @@
-console.log( 'program is running' );
+console.log('program is running');

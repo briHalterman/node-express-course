@@ -9,25 +9,25 @@
 // That will ensure that it isn’t pushed to github when you submit your answers
 
 
-const { readFileSync, writeFileSync } = require( 'fs' );
+const { readFileSync, writeFileSync } = require('fs');
 
-console.log( 'start' );
+console.log('start');
 
-// const fs = require( 'fs' );
+// const fs = require('fs');
 // fs.readFileSync;
 
-const fileA = readFileSync( './temporary/message.txt', 'utf8' );
-const fileB = readFileSync( './content/fileB.txt', 'utf8' );
+const fileA = readFileSync('./temporary/message.txt', 'utf8');
+const fileB = readFileSync('./content/fileB.txt', 'utf8');
 
-// console.log( fileA, fileB );
+// console.log(fileA, fileB);
 
 writeFileSync(
     './temporary/fileA.txt',
-    `Here is the result : ${ fileA }, ${ second }`,
+    `Here is the result : ${fileA}, ${second}`,
     { flag: 'a' }
 );
 
-// console.log( 'done with this task' );
-// console.log( 'starting the next one' );
+// console.log('done with this task');
+// console.log('starting the next one');
 
-console.log( fileA );
+console.log(fileA);
