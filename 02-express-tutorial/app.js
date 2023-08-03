@@ -18,12 +18,20 @@ const express = require('express');
 const app = express();
 
 // app.use statement for the middleware
-// You’ll eventually use many kinds of middleware, but for now the only middleware we are using is express.static()
+// You’ll eventually use many kinds of middleware, but for now the only express.static()
 // app.use(express.static(‘./public’)) so that your HTML file will load
 app.use(express.static('./public'));
 
-// You won’t have any app.get or app.post statements yet
+// app.get and app.post statements
 // Eventually these will be refactored into router modules, but for now you can put them inline
+// You won’t have any app.post statements yet
+
+// app.get statement 
+// for the URL "/api/v1/test"
+// return res.json({message: 'It worked!'})
+app.get('/api/v1/test', (req, res) => {
+    res.json({message: 'It worked!'});
+});
 
 // app.all statement
 // to handle page not found conditions
