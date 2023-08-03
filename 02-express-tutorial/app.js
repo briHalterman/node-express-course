@@ -17,6 +17,9 @@ const express = require('express');
 // Creation of the app as returned from express()
 const app = express();
 
+// Add data.js require statement
+const { products } = require('./data');
+
 // app.use statement for the middleware
 // You’ll eventually use many kinds of middleware, but for now the only express.static()
 // app.use(express.static(‘./public’)) so that your HTML file will load
@@ -31,6 +34,13 @@ app.use(express.static('./public'));
 // return res.json({message: 'It worked!'})
 app.get('/api/v1/test', (req, res) => {
     res.json({message: 'It worked!'});
+});
+
+// app.get statement
+// for the URL "/api/v1/products"
+// return the products variable, an array of objects from data.js
+app.get('/api/v1/products', (req, res) => {
+    res.status(200).json(products);
 });
 
 // app.all statement
