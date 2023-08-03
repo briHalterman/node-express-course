@@ -43,6 +43,13 @@ app.get('/api/v1/products', (req, res) => {
     res.status(200).json(products);
 });
 
+// app.get statement
+// for the URL "/api/v1/products/:productID"
+// Return a res.json(req.params)
+app.get('/api/v1/products/:productID', (req, res) => {
+    res.status(200).json(req.params);
+})
+
 // app.all statement
 // to handle page not found conditions
 app.all('*', (req, res) => {
