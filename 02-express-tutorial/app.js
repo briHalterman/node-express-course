@@ -50,6 +50,34 @@ app.use('/api/v1/test', logger);
 // app.use(express.static(‘./public’)) so that your HTML file will load
 app.use(express.static('./public'));
 
+// // Change the directory for static serving from ./public to ./methods-public, to test APIs from your browser
+// app.use(express.static('./methods-public'));
+
+
+// add middleware to parse post operations
+// returning the result as a hash in req.body
+// parse form data
+app.use(express.urlencoded({ extended: false }));
+// parse JSON body
+app.use(express.json())
+// You need these statements before your app.post() statement, so that the body is parsed before you do the rest of the processing
+
+// implement the app.post statement for /api/v1/people
+app.post('/api/v1/people', (req, res) => {
+    const { name } = req.body;
+    // check req.body to see if there is a req.body.name
+    // if no req.body.name, return JSON for an error
+    if (!name) {
+        // Set the HTTP result code to 400, which means there was an error on the client side, and also returns an error message
+        return res.status(400).json({success: false, message: 'Please provide a name'});
+    }
+    // if there is a value in req.body.name, add the entry to the people array
+    if (name) {
+        people.push({id: people.length, name: req.body.name});
+        req.status(201).json({success: true, name: req.body.name}); // The HTTP status code 201 means that an object was created on the server side    
+    }
+})
+
 // app.get and app.post statements
 // Eventually these will be refactored into router modules, but for now you can put them inline
 // You won’t have any app.post statements yet
