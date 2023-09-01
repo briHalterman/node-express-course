@@ -45,10 +45,52 @@ app.get('/api/v1/products', (req, res) => {
 
 // app.get statement
 // for the URL "/api/v1/products/:productID"
-// Return a res.json(req.params)
+// return a res.json(req.params)
 app.get('/api/v1/products/:productID', (req, res) => {
-    res.status(200).json(req.params);
+    // res.status(200).json(req.params);
+    // const { productID } = req.params;
+    const idToFind = parseInt(req.params.productID); // because this will be a string, and we need an integer
+    const singleProduct = products.find((p) => p.id === idToFind);
+
+    console.log(singleProduct);
+
+    // return a 404 status code and JSON for { message: “That product was not found.”}
+    if (!singleProduct) {
+        return res.status(404).json({ message: 'That product was not found.' });
+    }
+    return res.status(200).json(singleProduct);
 })
+
+// filter & slice
+// new app.get statement
+// for /api/v1/query
+// handle query strings
+app.get('/api/v1/query', (req, res) => {
+    // res.status(200).json(req.query.search);
+    // console.log(req.query);
+    const {search, limit } = req.query;
+    let sortedProducts = [...products];
+
+    // ALWAYS ALWAYS when setting up condition, include return to avoid errors
+
+    if (search) {
+        sortedProducts = sortedProducts.filter((product) => {
+            return product.name.startsWith(search);
+        })
+    }
+
+    if (limit) {
+        sortedProducts = sortedProducts.slice(0, Number(limit));
+    }
+
+    if (sortedProducts < 1) {
+        // res.status(200).send('no products matched your search');
+        return res.status(200).json({ success : true, data : [] })
+    }
+
+    res.status(200).json(sortedProducts);
+    // res.send('hello world'); // cannot send headers
+});
 
 // app.all statement
 // to handle page not found conditions
