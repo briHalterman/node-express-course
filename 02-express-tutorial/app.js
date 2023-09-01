@@ -68,7 +68,7 @@ app.get('/api/v1/products/:productID', (req, res) => {
 app.get('/api/v1/query', (req, res) => {
     // res.status(200).json(req.query.search);
     // console.log(req.query);
-    const {search, limit } = req.query;
+    const { search, limit, maxPrice } = req.query;
     let sortedProducts = [...products];
 
     // ALWAYS ALWAYS when setting up condition, include return to avoid errors
@@ -81,6 +81,13 @@ app.get('/api/v1/query', (req, res) => {
 
     if (limit) {
         sortedProducts = sortedProducts.slice(0, Number(limit));
+    }
+
+    // add logic to search by maximum price
+    if (maxPrice) {
+        sortedProducts = sortedProducts.filter((product) => {
+            return product.price <= Number(maxPrice);
+        })
     }
 
     if (sortedProducts < 1) {
