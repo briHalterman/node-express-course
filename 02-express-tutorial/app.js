@@ -39,6 +39,11 @@ const logger = (req, res, next) => {
 // 1. Insert middleware functions into route statements
 // 2. Invoke middleware via an app.use() statement
 
+// Call logger via app.use()
+// app.use(['/path1', '/path2'],logger)
+// When using an app.use() statement order is important! App.use() First!
+app.use('/api/v1/test', logger);
+
 // app.use statement for the middleware
 // You’ll eventually use many kinds of middleware, but for now the only express.static()
 // app.use(express.static(‘./public’)) so that your HTML file will load
@@ -51,15 +56,16 @@ app.use(express.static('./public'));
 // app.get statement 
 // for the URL "/api/v1/test"
 // return res.json({message: 'It worked!'})
-// app.get('/api/v1/test', (req, res) => {
-//     res.json({message: 'It worked!'});
-// });
-
-// Call logger in one of the app.get() statements
-// app.get('/', logger, (req, res) => {...})
-app.get('/api/v1/test', logger, (req, res) => {
+app.get('/api/v1/test', (req, res) => {
     res.json({message: 'It worked!'});
 });
+
+// take the logger call out of your app.get() statement
+// // call logger in one of the app.get() statements
+// // app.get('/', logger, (req, res) => {...})
+// app.get('/api/v1/test', logger, (req, res) => {
+//     res.json({message: 'It worked!'});
+// });
 
 // app.get statement
 // for the URL "/api/v1/products"
