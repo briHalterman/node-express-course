@@ -10,6 +10,7 @@ console.log('Express Tutorial');
 
     // You won’t have any app.get or app.post statements yet --have the statement app.use(express.static(‘./public’)) 
     // Use port 3000 in the listen statement
+// 
 
 // require statement for express
 const express = require('express');
@@ -19,6 +20,20 @@ const app = express();
 
 // Add data.js require statement
 const { products } = require('./data');
+
+// create a middleware function called logger in app.js
+// middleware is everywhere in express
+// req => middleware => res
+// a middleware function is passed req and res, and a third parameter, next
+const logger = (req, res, next) => {
+    // log the method and url from the req object, as well as the time, before calling next()
+    const method = req.method; // method
+    const url = req.url; // url
+    const time = new Date().getFullYear(); // time
+    console.log(method, url, time); // log method, url & time
+    // the next() function must be called once middleware processing is completed, else no response is sent back for the request
+    next(); // call next()
+};
 
 // app.use statement for the middleware
 // You’ll eventually use many kinds of middleware, but for now the only express.static()
