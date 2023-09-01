@@ -19,7 +19,8 @@ const express = require('express');
 const app = express();
 
 // Add data.js require statement
-const { products } = require('./data');
+// get the value for people
+const { products, people } = require('./data');
 
 // create a middleware function called logger in app.js
 // middleware is everywhere in express
@@ -66,6 +67,12 @@ app.get('/api/v1/test', (req, res) => {
 // app.get('/api/v1/test', logger, (req, res) => {
 //     res.json({message: 'It worked!'});
 // });
+
+// implement an app.get for /api/v1/people
+app.get('/api/v1/people', (req, res) => {
+    // call res.json(…) to send the data back
+    res.status(200).json(people);
+})
 
 // app.get statement
 // for the URL "/api/v1/products"
