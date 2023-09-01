@@ -29,11 +29,15 @@ const logger = (req, res, next) => {
     // log the method and url from the req object, as well as the time, before calling next()
     const method = req.method; // method
     const url = req.url; // url
-    const time = new Date().getFullYear(); // time
+    const time = new Date().getTime(); // time
     console.log(method, url, time); // log method, url & time
     // the next() function must be called once middleware processing is completed, else no response is sent back for the request
     next(); // call next()
 };
+
+// Middleware functions are called in two ways:
+// 1. Insert middleware functions into route statements
+// 2. Invoke middleware via an app.use() statement
 
 // app.use statement for the middleware
 // You’ll eventually use many kinds of middleware, but for now the only express.static()
@@ -47,7 +51,13 @@ app.use(express.static('./public'));
 // app.get statement 
 // for the URL "/api/v1/test"
 // return res.json({message: 'It worked!'})
-app.get('/api/v1/test', (req, res) => {
+// app.get('/api/v1/test', (req, res) => {
+//     res.json({message: 'It worked!'});
+// });
+
+// Call logger in one of the app.get() statements
+// app.get('/', logger, (req, res) => {...})
+app.get('/api/v1/test', logger, (req, res) => {
     res.json({message: 'It worked!'});
 });
 
