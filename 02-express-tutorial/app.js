@@ -22,6 +22,9 @@ const app = express();
 // get the value for people
 const { products, people } = require('./data');
 
+// add a require statement for the peopleRouter
+const peopleRouter = require('./routes/people.js');
+
 // create a middleware function called logger in app.js
 // middleware is everywhere in express
 // req => middleware => res
@@ -62,21 +65,25 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 // You need these statements before your app.post() statement, so that the body is parsed before you do the rest of the processing
 
-// implement the app.post statement for /api/v1/people
-app.post('/api/v1/people', (req, res) => {
-    const { name } = req.body;
-    // check req.body to see if there is a req.body.name
-    // if no req.body.name, return JSON for an error
-    if (!name) {
-        // Set the HTTP result code to 400, which means there was an error on the client side, and also returns an error message
-        return res.status(400).json({success: false, message: 'Please provide a name'});
-    }
-    // if there is a value in req.body.name, add the entry to the people array
-    if (name) {
-        people.push({id: people.length, name: req.body.name});
-        req.status(201).json({success: true, name: req.body.name}); // The HTTP status code 201 means that an object was created on the server side    
-    }
-})
+// add app.use() statement
+app.use('/api/v1/people', peopleRouter)
+
+// comment out your app.post statement for /api/v1/people
+// // implement the app.post statement for /api/v1/people
+// app.post('/api/v1/people', (req, res) => {
+//     const { name } = req.body;
+//     // check req.body to see if there is a req.body.name
+//     // if no req.body.name, return JSON for an error
+//     if (!name) {
+//         // Set the HTTP result code to 400, which means there was an error on the client side, and also returns an error message
+//         return res.status(400).json({success: false, message: 'Please provide a name'});
+//     }
+//     // if there is a value in req.body.name, add the entry to the people array
+//     if (name) {
+//         people.push({id: people.length, name: req.body.name});
+//         req.status(201).json({success: true, name: req.body.name}); // The HTTP status code 201 means that an object was created on the server side    
+//     }
+// })
 
 // app.get and app.post statements
 // Eventually these will be refactored into router modules, but for now you can put them inline
@@ -96,11 +103,12 @@ app.get('/api/v1/test', (req, res) => {
 //     res.json({message: 'It worked!'});
 // });
 
-// implement an app.get for /api/v1/people
-app.get('/api/v1/people', (req, res) => {
-    // call res.json(…) to send the data back
-    res.status(200).json(people);
-})
+// comment out your app.get statement for /api/v1/people
+// // implement an app.get for /api/v1/people
+// app.get('/api/v1/people', (req, res) => {
+//     // call res.json(…) to send the data back
+//     res.status(200).json(people);
+// })
 
 // app.get statement
 // for the URL "/api/v1/products"
