@@ -4,7 +4,8 @@ const router = express.Router();
 let { people } = require('../data');
 
 // require addPerson and getPeople
-const { addPerson, getPeople } = require('../controllers/people.js');
+// require getPerson
+const { addPerson, getPeople, getPerson } = require('../controllers/people.js');
 
 // add a router.get() statement for the ‘/’ path
 // change the router.get statement to call getPeople, instead of doing the processing inline
@@ -13,22 +14,26 @@ const { addPerson, getPeople } = require('../controllers/people.js');
 // });
 router.get('/', getPeople);
 
+
 // Add a router.get statement to routes/people.js
 router.get('/:id', (req, res) => {
-    const { id } = req.params;
-    // use Array.find(), but convert req.params.id from a string to an integer
-    const person = people.find((person) => person.id === Number(id));
-    // if the array includes a people entry with a matching id
-    if (person) {
-        // return a JSON object with that entry
-        return res.status(200).json(person) // return code 200
-    }
-    // if the entry is not found
-    if (!person) {
-        // return an error with JSON that has an appropriate message
-        return res.status(404).json({ success: false, msg: `no person with id ${id}`});
-    }
+    // move the logic for this statement to controllers/people.js
+    // const { id } = req.params;
+    // // use Array.find(), but convert req.params.id from a string to an integer
+    // const person = people.find((person) => person.id === Number(id));
+    // // if the array includes a people entry with a matching id
+    // if (person) {
+    //     // return a JSON object with that entry
+    //     return res.status(200).json(person) // return code 200
+    // }
+    // // if the entry is not found
+    // if (!person) {
+    //     // return an error with JSON that has an appropriate message
+    //     return res.status(404).json({ success: false, msg: `no person with id ${id}`});
+    // }
     
+    // call the controller function
+    getPerson(req, res);
 });
 
 // add a router.post()statement for ‘/’

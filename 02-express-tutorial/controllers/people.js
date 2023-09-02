@@ -27,5 +27,22 @@ const addPerson = (req, res) => {
     }
 };
 
+const getPerson = (req, res) => {
+    const { id } = req.params;
+    // use Array.find(), but convert req.params.id from a string to an integer
+    const person = people.find((person) => person.id === Number(id));
+    // if the array includes a people entry with a matching id
+    if (person) {
+        // return a JSON object with that entry
+        return res.status(200).json(person) // return code 200
+    }
+    // if the entry is not found
+    if (!person) {
+        // return an error with JSON that has an appropriate message
+        return res.status(404).json({ success: false, msg: `no person with id ${id}`});
+    }    
+};
+
 // export { addPerson, getPeople }
-module.exports = { addPerson, getPeople };
+// update the module.exports statement to include getPerson
+module.exports = { addPerson, getPeople, getPerson };
