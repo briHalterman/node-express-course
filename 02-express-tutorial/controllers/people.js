@@ -27,6 +27,7 @@ const addPerson = (req, res) => {
     }
 };
 
+// getPerson function
 const getPerson = (req, res) => {
     const { id } = req.params;
     // use Array.find(), but convert req.params.id from a string to an integer
@@ -43,6 +44,32 @@ const getPerson = (req, res) => {
     }    
 };
 
+// updatePerson function
+const updatePerson = (req, res) => {
+    const { id } = req.params;
+    const { name } = req.body;
+    const person = people.find((person) => person.id === Number(id));
+
+    // return error if the people entry is not found
+    if (!person) {
+        return res.status(404).json({ success: false, msg: `no person with id ${id}` });
+    }
+
+    // update the people entry if it is found
+    const updatedPerson = people.map((person) => {
+        if (person.id === Number(id)) {
+            person.name = name;
+        }
+        return person;
+    });
+    res.status(200).json({ success: true, data: updatedPerson})
+};
+
 // export { addPerson, getPeople }
 // update the module.exports statement to include getPerson
-module.exports = { addPerson, getPeople, getPerson };
+module.exports = { 
+    addPerson, 
+    getPeople, 
+    getPerson, 
+    updatePerson 
+};
