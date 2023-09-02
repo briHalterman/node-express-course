@@ -1,16 +1,15 @@
 // start with a require statement that gets the people array from ../data.js
 let { people } = require('../data');
 
-// create functions addPerson and getPeople
-// each passed req and res
-
-// getPeople function
+// create getPeople function
+// pass req and res
 const getPeople = (req, res) => {
     // copy the logic from your router/people.js file
     res.status(200).json(people);
 };
 
-// addPerson function
+// create addPerson function
+// pass req and res
 const addPerson = (req, res) => {
     // copy the logic from your router/people.js file
     const { name } = req.body;
@@ -65,6 +64,7 @@ const updatePerson = (req, res) => {
     res.status(200).json({ success: true, data: updatedPerson})
 };
 
+// removePerson function
 const removePerson = (req, res) => {
     const { id } = req.params.id;
     const person = people.find((person) => person.id === Number(req.params.id));
@@ -77,7 +77,7 @@ const removePerson = (req, res) => {
 }
 
 // export { addPerson, getPeople }
-// update the module.exports statement to include getPerson
+// update the module.exports statement to include functions
 module.exports = { 
     addPerson, 
     getPeople, 
