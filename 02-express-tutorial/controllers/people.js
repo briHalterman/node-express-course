@@ -65,11 +65,23 @@ const updatePerson = (req, res) => {
     res.status(200).json({ success: true, data: updatedPerson})
 };
 
+const removePerson = (req, res) => {
+    const { id } = req.params.id;
+    const person = people.find((person) => person.id === Number(req.params.id));
+    if (!person) {
+        return res.status(404).json({ success: false, msg: `no person with id ${req.params.id}` });
+    }
+    // use Array.filter() to create the updated people array
+    const updatedPeople = people.filter((person) => person.id !== Number(req.params.id));
+    return res.status(200).json({ success: true, data: updatedPeople })
+}
+
 // export { addPerson, getPeople }
 // update the module.exports statement to include getPerson
 module.exports = { 
     addPerson, 
     getPeople, 
     getPerson, 
-    updatePerson 
+    updatePerson,
+    removePerson 
 };

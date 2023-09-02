@@ -5,7 +5,13 @@ let { people } = require('../data');
 
 // require addPerson and getPeople
 // require getPerson
-const { addPerson, getPeople, getPerson, updatePerson } = require('../controllers/people.js');
+const { 
+    addPerson, 
+    getPeople, 
+    getPerson, 
+    updatePerson, 
+    removePerson 
+} = require('../controllers/people.js');
 
 // add a router.get() statement for the ‘/’ path
 // change the router.get statement to call getPeople, instead of doing the processing inline
@@ -71,7 +77,20 @@ router.post('/', addPerson);
 //         return person;
 //     });
 //     res.status(200).json({ success: true, data: updatedPerson})
-// })
+// });
 router.put('/:id', updatePerson);
+
+// add a router.delete statement
+// router.delete('/:id', (req, res) => {
+//     const { id } = req.params.id;
+//     const person = people.find((person) => person.id === Number(req.params.id));
+//     if (!person) {
+//         return res.status(404).json({ success: false, msg: `no person with id ${req.params.id}` });
+//     }
+//     // use Array.filter() to create the updated people array
+//     const updatedPeople = people.filter((person) => person.id !== Number(req.params.id));
+//     return res.status(200).json({ success: true, data: updatedPeople })
+// });
+router.delete('/:id', removePerson);
 
 module.exports = router;
