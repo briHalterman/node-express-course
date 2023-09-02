@@ -13,6 +13,24 @@ const { addPerson, getPeople } = require('../controllers/people.js');
 // });
 router.get('/', getPeople);
 
+// Add a router.get statement to routes/people.js
+router.get('/:id', (req, res) => {
+    const { id } = req.params;
+    // use Array.find(), but convert req.params.id from a string to an integer
+    const person = people.find((person) => person.id === Number(id));
+    // if the array includes a people entry with a matching id
+    if (person) {
+        // return a JSON object with that entry
+        return res.status(200).json(person) // return code 200
+    }
+    // if the entry is not found
+    if (!person) {
+        // return an error with JSON that has an appropriate message
+        return res.status(404).json({ success: false, msg: `no person with id ${id}`});
+    }
+    
+});
+
 // add a router.post()statement for ‘/’
 // change the router.post statement to call addPerson, instead of doing the processing inline
 // router.post('/', (req, res) => {
