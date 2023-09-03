@@ -161,6 +161,15 @@ const displayLastNames = names.map((fullName) => {
 });
 console.log(displayLastNames());
 
+// filter names that don't match the format "<first> <last>"
+// const format = // "<first> <last>"
+const formatFilter = names.filter((submittedName) => {
+  const splitName = submittedName.split(' ');
+  const formattedName = splitName.length === 2;
+  return formattedName;
+})
+console.log(formatFilter);
+
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
 ///////////////////////////////////////////////////////////////////////////////
