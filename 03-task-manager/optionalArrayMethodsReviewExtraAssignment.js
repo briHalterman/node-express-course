@@ -170,6 +170,19 @@ const formatFilter = names.filter((submittedName) => {
 })
 console.log(formatFilter);
 
+// create a new array where everyone's name is converted to "Title Case"
+const toTitleCase = names.map((submittedName) => {
+  const lowerCaseName = submittedName.toLowerCase();
+  const splitName = lowerCaseName.split(' ');
+  const titleCaseSplitName = splitName.map((name) => {
+    const titledName = name.charAt(0).toUpperCase() + name.slice(1);
+    return titledName;
+  })
+  const titleCaseName = titleCaseSplitName.join(' ');
+  return titleCaseName;
+})
+console.log(toTitleCase)
+
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
 ///////////////////////////////////////////////////////////////////////////////
