@@ -208,7 +208,7 @@ const nameArrayBossChallenge = names
   const zEndingName = lastLetterOfName.toLowerCase === 'z';
   return !zEndingName;
 }).map((name) => `Welcome, ${name}! Please sign up!`);
-console.log(nameArrayBossChallenge)
+console.log(nameArrayBossChallenge);
 
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
@@ -258,17 +258,33 @@ const titledNames = names.map((name) => {
   // `.map` can transform each element 1:1
   const eachWordSeparated = name.split(" ")
 
+  // transform each word to title case
+
   const titledName = eachWordSeparated.map((inputWord) => {
     const inputLetters = inputWord.split("");
+
+    // what do we want to do with each letter?'
+    // if fist letter: capitalize
+    // otherwise lowercase
     const wordWithFirstLetterUppercase = inputLetters
-      .map((letter, idx) => (
-        idx === 0
-          ? letter.toUpperCase()
-          : letter.toLowerCase()
-      ))
-      .join("")
+
+    .map((letter, idx) => (
+      idx === 0
+        ? letter.toUpperCase()
+        : letter.toLowerCase()
+    )) // if else shorthand
+
+    // oneline arrow function
+    // .map((letter, idx) => (idx === 0 ? letter.toUpperCase() : letter.toLowerCase()))
+
+    // .map((letter, idx) => {
+    //   return (idx === 0 ? letter.toUpperCase() : letter.toLowerCase())
+    // })
+
+    .join("")
     return wordWithFirstLetterUppercase
   });
+  // return the reformatted ("title case") name
   return titledName.join(" ")
 });
 console.log('titledNames', titledNames);
@@ -366,7 +382,7 @@ const result = names
   // remove bad format
   .filter((name) => name.match(rightFormat))
   // change to title case
-  .map(transformNameIntoTitleCase)
+  .map(transformNameIntoTitleCase) // .map(name => transformNameIntoTitleCase(name))
   // remove names that end in "z"
   .filter((name) => {
     const lastLetter = name.slice(-1);
