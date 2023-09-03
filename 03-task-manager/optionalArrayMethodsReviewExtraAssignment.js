@@ -126,7 +126,7 @@ object.behavior()
 // - Create a new array with only each person's last name
 // - Filter names that don't match the format "<first> <last>"
 //   - Should remove Tam because she has a double-space
-//   - Should remove Carlow because he has a middle-name
+//   - Should remove Carlos because he has a middle-initial
 //   - Should also remove names like:
 //     - "Timothy      Cook"
 //     - "Nick_Masters"
@@ -153,6 +153,13 @@ const names = [
   'Mariana Gomez',
   'Amy You'
 ];
+
+// create a new array with only each person's last name
+const displayLastNames = names.map((fullName) => {
+  const lastName = fullName.split(' ').pop();
+  return lastName
+});
+console.log(displayLastNames());
 
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
