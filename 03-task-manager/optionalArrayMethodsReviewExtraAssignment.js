@@ -183,6 +183,33 @@ const toTitleCase = names.map((submittedName) => {
 })
 console.log(toTitleCase)
 
+// boss challenge:
+// - remove names with the wrong format
+// - change it to "Title Case"
+// - remove people whose last name ends with z
+// - write a message asking them to sign up
+
+const nameArrayBossChallenge = names
+.filter((name) => {
+  const splitName = name.split(' ');
+  const formattedName = splitName.length === 2;
+  return formattedName;
+}).map((name) => {
+  const lowerCaseName = name.toLowerCase();
+  const splitName = lowerCaseName.split(' ');
+  const titleCaseNames = splitName.map((name) => {
+    const titledNames = name.charAt(0).toUpperCase() + name.slice(1);
+    return titledNames;
+  });
+  const titleCaseName = titleCaseNames.join(' ');
+  return titleCaseName;
+}).filter((name) => {
+  const lastLetterOfName = name.slice(-1);
+  const zEndingName = lastLetterOfName.toLowerCase === 'z';
+  return !zEndingName;
+}).map((name) => `Welcome, ${name}! Please sign up!`);
+console.log(nameArrayBossChallenge)
+
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
 ///////////////////////////////////////////////////////////////////////////////
