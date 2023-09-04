@@ -31,9 +31,7 @@ require('dotenv').config();
 
 //  middleware
 
-// set up a connection
-
-app.use(express.json()); // so we have data from req.body
+app.use(express.json()); // to have data from req.body
 
 // routes
 app.get('/hello', (req, res) => {
