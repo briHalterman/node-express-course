@@ -7,12 +7,14 @@ const getAllTasks = (req, res) => {
 
 // Create Task (POST)
 const createTask = (req, res) => {
-    res.send('create task');
+    // res.send('create task');
+    res.json(req.body); // send what we are getting from the client
 }
 
 // Get Task (GET)
 const getTask = (req, res) => {
-    res.send('get single tasks');
+    // res.send('get single tasks');
+    res.json({ id: req.params.id })
 } ;
 
 // Delete Task (DELETE)
