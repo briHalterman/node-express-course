@@ -3,7 +3,8 @@
 const mongoose = require('mongoose');
 
 const TaskSchema = new mongoose.Schema({
-    name: String, completed: Boolean
+    name: String, 
+    completed: Boolean
 });
 
 // model as representation of collection
