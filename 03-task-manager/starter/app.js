@@ -13,7 +13,6 @@ const app = express();
 const tasks = require('./routes/tasks');
 
 //  middleware
-
 app.use(express.json()); // so we have data from req.body
 
 // routes
