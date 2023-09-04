@@ -8,11 +8,31 @@ console.log('Task Manager App');
 // PUT/PATCH    api/tasks/:id   - Update Task
 // DELETE       api/tasks/:id   - Delete Task
 
+// CRUD (create read destroy update) - common aproach is to build api around crud
+
+// Create an item
+// Read items
+// Update item
+// Delete (remove) item
+
+// MongoDB
+// - NoSQL, non-relational db
+// - Store JSON
+// - easy to get started
+// - free cloud hosting - atlas
+
+// require('./db/connect'); // temporary
+
 const express = require('express');
 const app = express();
 const tasks = require('./routes/tasks');
+const connectDB = require('./db/connect');
+require('dotenv').config();
 
 //  middleware
+
+// set up a connection
+
 app.use(express.json()); // so we have data from req.body
 
 // routes
@@ -30,4 +50,16 @@ app.use('/api/v1/tasks', tasks);
 
 const port = 3000;
 
-app.listen(port, console.log(`server is listening on port ${port}...`));
+// invoke connectDB and then only if successful spin up server
+const start = async () => {
+    try {
+        await connectDB(process.env.MONGO_URI)
+        app.listen(port, console.log(`server is listening on port ${port}...`));
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+start();
+
+// app.listen(port, console.log(`server is listening on port ${port}...`));

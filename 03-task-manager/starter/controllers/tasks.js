@@ -1,4 +1,4 @@
-// set up the rest of the controllers
+// set up controllers
 
 // Get All Tasks (GET)
 const getAllTasks = (req, res) => {
