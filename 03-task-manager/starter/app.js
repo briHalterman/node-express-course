@@ -8,7 +8,7 @@ console.log('Task Manager App');
 // PUT/PATCH    api/tasks/:id   - Update Task
 // DELETE       api/tasks/:id   - Delete Task
 
-// CRUD (create read destroy update) - common aproach is to build api around crud
+// CRUD (create read update destroy) - common aproach is to build api around crud
 
 // Create an item
 // Read items
