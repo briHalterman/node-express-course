@@ -15,12 +15,23 @@ const getAllTasks = (req, res) => {
 //     // res.send('create task');
 //     res.json(req.body); // send what we are getting from the client
 // }
-const createTask = async (req, res) => {
-    // const task = await Task.create({ name: 'first task' }) // hardcoded
-    // res.json(req.body);
 
-    const task = await Task.create(req.body);
-    res.status(201).json({ task });
+// const createTask = async (req, res) => {
+//     // const task = await Task.create({ name: 'first task' }) // hardcoded
+//     // res.json(req.body);
+
+//     const task = await Task.create(req.body);
+//     res.status(201).json({ task });
+// }
+// we have an asycronous operation but we're not handling if there is an error
+
+const createTask = async (req, res) => {
+    try {
+        const task = await Task.create(req.body);
+        res.status(201).json({ task });
+    } catch (error) {
+        res.status(500).json({ msg: error });
+    };
 }
 
 // Get Task (GET)
