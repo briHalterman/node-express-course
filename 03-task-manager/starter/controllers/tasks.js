@@ -115,14 +115,26 @@ const createTask = asyncWrapper(async (req, res) => {
 //     }; // use try catch
 // };
 
-const getTask = asyncWrapper(async (req, res) => { 
-        const { id: taskID } = req.params
-        const task = await Task.findOne({ _id: taskID }); 
-        // leave this for time being, but we will work on it later
-        if (!task) {
-            res.status(404).json({msg: `No task with id : ${taskID}` }) // when we set up custom error, there will be some changes here too
-        }
-        res.status(200).json({ task }); 
+// const getTask = asyncWrapper(async (req, res) => { 
+//         const { id: taskID } = req.params
+//         const task = await Task.findOne({ _id: taskID }); 
+//         // leave this for time being, but we will work on it later
+//         if (!task) {
+//             res.status(404).json({msg: `No task with id : ${taskID}` }) // when we set up custom error, there will be some changes here too
+//         }
+//         res.status(200).json({ task }); 
+// });
+
+const getTask = asyncWrapper(async (req, res, next) => { 
+    const { id: taskID } = req.params
+    const task = await Task.findOne({ _id: taskID }); 
+    if (!task) {
+        const error = new Error('Not Found');
+        error.status = 404;
+        return next(error);
+        return res.status(404).json({msg: `No task with id : ${taskID}` }); 
+    }
+    res.status(200).json({ task }); 
 });
 
 // Delete Task (DELETE)

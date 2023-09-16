@@ -12,10 +12,16 @@
 //     res.status(500).send('Something broke!');
 // });
 
+// const errorHandlerMiddleware = (err, req, res, next) => {
+//     // will add more code, once we set up our own custom error class
+//     // return res.status(500).json({ msg: err });
+//     return res.status(500).json({ msg: `Something went wrong, please try again later` }); // hardcoded error
+// };
+
 const errorHandlerMiddleware = (err, req, res, next) => {
-    // will add more code, once we set up our own custom error class
-    // return res.status(500).json({ msg: err });
-    return res.status(500).json({ msg: `Something went wrong, please try again later` }); // hardcoded error
+    console.log(err);
+    // return res.status(500).json({ msg: `Something went wrong, please try again later` });
+    return res.status(err.status).json({ msg: err.message });
 };
 
 // don't forget to export
