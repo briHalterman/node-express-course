@@ -13,6 +13,8 @@ const { createCustomError } = require('../errors/custom-error');
 // middleware wrapper function
 // eliminates redundancy of try/catch blocks
 
+// You do not have to create the asyncWrapper middleware, because you can instead use an NPM package called express-async-errors that provides the capability. The course uses Express 4, but in Express 5, function equivalent to express-async-errors is automatically included, so for Express 5 this package is not needed.
+
 // Get All Tasks (GET)
 
 // const getAllTasks = (req, res) => {
