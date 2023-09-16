@@ -126,7 +126,6 @@ const createTask = asyncWrapper(async (req, res) => {
 //         res.status(200).json({ task }); 
 // });
 
-// call next & pass in error
 const getTask = asyncWrapper(async (req, res, next) => { 
     const { id: taskID } = req.params
     const task = await Task.findOne({ _id: taskID }); 
@@ -137,6 +136,7 @@ const getTask = asyncWrapper(async (req, res, next) => {
     //     return res.status(404).json({msg: `No task with id : ${taskID}` }); 
     // }
     if (!task) {
+        // call next & pass in error
         return next(createCustomError(`No task with id : ${taskID}`, 404));
     }
     res.status(200).json({ task }); 
