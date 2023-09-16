@@ -15,7 +15,7 @@ const TaskSchema = new mongoose.Schema({
     // completed: Boolean
     completed: {
         type: Boolean,
-        // default: false // default value option
+        default: false // default value option
     }
 });
 
