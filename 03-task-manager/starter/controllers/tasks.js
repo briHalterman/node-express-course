@@ -7,6 +7,7 @@ const asyncWrapper = require('../middleware/async');
 
 // SET UP CONTROLLERS
 
+// Refractor All Routes
 // asychronous wrappers for controllers
 // middleware wrapper function
 // eliminates redundancy of try/catch blocks
@@ -46,6 +47,7 @@ const asyncWrapper = require('../middleware/async');
 // status is a bit redundant with try/catch
 // whichever route you pick, stick with it so there's no confusion
 
+// refractor route
 // const getAllTasks = asyncWrapper (async (req, res) => {
 //     try {
 //         const tasks = await Task.find({});
@@ -76,14 +78,20 @@ const getAllTasks = asyncWrapper (async (req, res) => {
 // }
 // we have an asycronous operation but we're not handling if there is an error
 
-const createTask = async (req, res) => {
-    try {
-        const task = await Task.create(req.body);
-        res.status(201).json({ task });
-    } catch (error) {
-        res.status(500).json({ msg: error });
-    };
-}
+// refractor route
+// const createTask = async (req, res) => {
+//     try {
+//         const task = await Task.create(req.body);
+//         res.status(201).json({ task });
+//     } catch (error) {
+//         res.status(500).json({ msg: error });
+//     };
+// }
+
+const createTask = asyncWrapper(async (req, res) => {
+    const task = await Task.create(req.body);
+    res.status(201).json({ task });
+})
 
 // Get Task (GET)
 
