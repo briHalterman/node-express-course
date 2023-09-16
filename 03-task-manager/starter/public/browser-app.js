@@ -65,12 +65,13 @@ tasksDOM.addEventListener('click', async (e) => {
 
 // form
 
-formDOM.addEventListener('submit', async (e) => {
-  e.preventDefault()
+formDOM.addEventListener('submit', async (e) => { // listen for event
+  e.preventDefault()  // prevent default
   const name = taskInputDOM.value
 
+  // everything is in try/catch
   try {
-    await axios.post('/api/v1/tasks', { name })
+    await axios.post('/api/v1/tasks', { name }) // axios library
     showTasks()
     taskInputDOM.value = ''
     formAlertDOM.style.display = 'block'
