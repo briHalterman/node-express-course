@@ -1,3 +1,4 @@
-const notFound = (req, res) => res.status(404).send('Route does not exist'); // set up 404 with whatever message you want to send back
+// set up custom 404 response
+const notFound = (req, res) => res.status(404).send('Route does not exist'); 
 
 module.exports = notFound;

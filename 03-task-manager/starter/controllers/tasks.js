@@ -1,10 +1,15 @@
 // START USING MODEL
-const Task = require('../models/task')
+const Task = require('../models/task');
+const asyncWrapper = require('../middleware/async');
 
 // an instance of a model is call a document
 // the first argument is the singular name of the collection the model is for
 
 // SET UP CONTROLLERS
+
+// asychronous wrappers for controllers
+// middleware wrapper function
+// eliminates redundancy of try/catch blocks
 
 // Get All Tasks (GET)
 
@@ -21,25 +26,40 @@ const Task = require('../models/task')
 //     };
 // };
 
-const getAllTasks = async (req, res) => {
-    try {
-        const tasks = await Task.find({});
+// const getAllTasks = async (req, res) => {
+//     try {
+//         const tasks = await Task.find({});
 
-        // res.status(200).json({ tasks });
-        // res.status(200).json({ tasks, amount: tasks.length });
-        // res.status(200).json({ success: true, data: { tasks, nbHits: tasks.length } })
-        res
-        .status(200)
-        .json({ 
-            status: 'success', // then for error, status: "fail"
-            data: { tasks, nbHits: tasks.length } 
-        })
-    } catch (error) {
-        res.status(500).json({ msg: error });
-    };
-};
+//         // res.status(200).json({ tasks });
+//         // res.status(200).json({ tasks, amount: tasks.length });
+//         // res.status(200).json({ success: true, data: { tasks, nbHits: tasks.length } })
+//         res
+//         .status(200)
+//         .json({ 
+//             status: 'success', // then for error, status: "fail"
+//             data: { tasks, nbHits: tasks.length } 
+//         })
+//     } catch (error) {
+//         res.status(500).json({ msg: error });
+//     };
+// };
 // status is a bit redundant with try/catch
 // whichever route you pick, stick with it so there's no confusion
+
+// const getAllTasks = asyncWrapper (async (req, res) => {
+//     try {
+//         const tasks = await Task.find({});
+//         res.status(200).json({ tasks });
+//     } catch (error) {
+//         res.status(500).json({ msg: error });
+//     };
+// });
+
+// remove try/catch block completely
+const getAllTasks = asyncWrapper (async (req, res) => {
+    const tasks = await Task.find({});
+    res.status(200).json({ tasks });
+});
 
 // Create Task (POST)
 
