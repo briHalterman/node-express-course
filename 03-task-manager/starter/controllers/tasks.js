@@ -100,19 +100,30 @@ const createTask = asyncWrapper(async (req, res) => {
 //     res.json({ id: req.params.id })
 // } ;
 
-const getTask = async (req, res) => { // set up async
-    try {
+// refractor route
+// const getTask = async (req, res) => { // set up async
+//     try {
+//         const { id: taskID } = req.params
+//         const task = await Task.findOne({ _id: taskID }); // use static function findOne() to look for specific ID
+//         // ALWAYS set up return!
+//         if (!task) {
+//             res.status(404).json({msg: `No task with id : ${taskID}` }) // if we don't find task send back 404
+//         }
+//         res.status(200).json({ task }); // if we find task with ID send back task
+//     } catch (error) {
+//         res.status(500).json({ msg: error }) // generic error
+//     }; // use try catch
+// };
+
+const getTask = asyncWrapper(async (req, res) => { 
         const { id: taskID } = req.params
-        const task = await Task.findOne({ _id: taskID }); // use static function findOne() to look for specific ID
-        // ALWAYS set up return!
+        const task = await Task.findOne({ _id: taskID }); 
+        // leave this for time being, but we will work on it later
         if (!task) {
-            res.status(404).json({msg: `No task with id : ${taskID}` }) // if we don't find task send back 404
+            res.status(404).json({msg: `No task with id : ${taskID}` }) // when we set up custom error, there will be some changes here too
         }
-        res.status(200).json({ task }); // if we find task with ID send back task
-    } catch (error) {
-        res.status(500).json({ msg: error }) // generic error
-    }; // use try catch
-};
+        res.status(200).json({ task }); 
+});
 
 // Delete Task (DELETE)
 
