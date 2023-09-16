@@ -1,6 +1,7 @@
 // START USING MODEL
 const Task = require('../models/task');
 const asyncWrapper = require('../middleware/async');
+const { createCustomError } = require('../errors/custom-error');
 
 // an instance of a model is call a document
 // the first argument is the singular name of the collection the model is for
@@ -128,11 +129,14 @@ const createTask = asyncWrapper(async (req, res) => {
 const getTask = asyncWrapper(async (req, res, next) => { 
     const { id: taskID } = req.params
     const task = await Task.findOne({ _id: taskID }); 
+    // if (!task) {
+    //     const error = new Error('Not Found');
+    //     error.status = 404;
+    //     return next(error);
+    //     return res.status(404).json({msg: `No task with id : ${taskID}` }); 
+    // }
     if (!task) {
-        const error = new Error('Not Found');
-        error.status = 404;
-        return next(error);
-        return res.status(404).json({msg: `No task with id : ${taskID}` }); 
+        return next(createCustomError(`No task with id : ${taskID}`, 404));
     }
     res.status(200).json({ task }); 
 });
@@ -163,7 +167,8 @@ const deleteTask = asyncWrapper(async (req, res) => {
     const { id: taskID } = req.params;
     const task = await Task.findOneAndDelete({ _id: taskID });
     if (!task) {
-        return res.status(404).json({ msg: `No task with id : ${taskID}` });
+        // return res.status(404).json({ msg: `No task with id : ${taskID}` });
+        return next(createCustomError(`No task with id : ${taskID}`, 404));
     };
     res.status(200).json({ task });
 });
@@ -206,7 +211,8 @@ const updateTask = asyncWrapper(async (req, res) => {
             runValidators: true 
         });
         if (!task) {
-            return res.status(404).json({ msg: `No task with id : ${taskID}` });
+            // return res.status(404).json({ msg: `No task with id : ${taskID}` });
+            return next(createCustomError(`No task with id : ${taskID}`, 404));
         };
         res.status(200).json({ id: taskID, data: req.body });
 });
