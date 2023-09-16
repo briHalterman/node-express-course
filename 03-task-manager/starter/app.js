@@ -29,6 +29,7 @@ const tasks = require('./routes/tasks');
 const connectDB = require('./db/connect');
 require('dotenv').config();
 const notFound = require('./middleware/not-found'); // set name
+const errorHandlerMiddleware = require('./middleware/error-handler'); // naming is the most difficult aspect of programming
 
 //  middleware
 app.use(express.static('./public'));
@@ -49,6 +50,7 @@ app.use('/api/v1/tasks', tasks);
 // app.delete('/api/v1/tasks/:id')  - delete task
 
 app.use(notFound); // pass function into app.use()
+app.use(errorHandlerMiddleware);
 
 const port = 3000;
 
