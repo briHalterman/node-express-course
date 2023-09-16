@@ -52,7 +52,13 @@ app.use('/api/v1/tasks', tasks);
 app.use(notFound); // pass function into app.use()
 app.use(errorHandlerMiddleware);
 
-const port = 3000;
+// Deployment
+// We are not going to deploy this project
+
+// const port = 3000;
+const port = process.env.PORT || 3000;
+
+// app.listen(port, console.log(`server is listening on port ${port}...`));
 
 // invoke connectDB and then only if successful spin up server
 const start = async () => {
@@ -65,5 +71,3 @@ const start = async () => {
 };
 
 start();
-
-// app.listen(port, console.log(`server is listening on port ${port}...`));

@@ -126,6 +126,7 @@ const createTask = asyncWrapper(async (req, res) => {
 //         res.status(200).json({ task }); 
 // });
 
+// call next & pass in error
 const getTask = asyncWrapper(async (req, res, next) => { 
     const { id: taskID } = req.params
     const task = await Task.findOne({ _id: taskID }); 
