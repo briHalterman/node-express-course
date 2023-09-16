@@ -1,5 +1,6 @@
 // avoid try/catch while still using await syntax
 // set up try/catch blocks inside of wrapper
+
 const asyncWrapper = (fn) => { // take controller as an argument
     return async (req, res, next) => { // access res, res, and next from express
         // set up try/catch block
