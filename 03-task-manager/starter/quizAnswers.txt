@@ -1,0 +1,32 @@
+Answer the following questions:
+
+1. Quickly explain how middleware is used in an Express application.
+2. What does CRUD stand for?
+3. You are careful to store your sensitive information in a .env file.
+    a. How do you get your app to access the information in the .env file?
+    b. How do you protect the contents of the .env file so that it is not stored in your github repository?
+
+
+
+
+ANSWERS
+
+1. Quickly explain how middleware is used in an Express application.
+
+    Middleware is everywhere in express! It is what is between the request and the response. There are three types of middleware: custom, built-in, and third party. A middleware funtion is passed req and res, and a third parameter, next. The next() function must be called once middleware processing is completed, or no response is sent back for the request. Middleware functions are called in two ways, insert middleware into route statements, or invoke middleware via an app.use() statement. 
+
+2. What does CRUD stand for?
+
+    CRUD stands for "Create, Read, Update, Destroy". It is common for APIs to be built around CRUD. 
+
+3. You are careful to store your sensitive information in a .env file.
+
+    a. How do you get your app to access the information in the .env file?
+
+        The information in the .env file is stored as a variable (variables). After you require the "dotenv" file, you can use the variable from that file.
+
+        // require('dotenv').config();
+
+    b. How do you protect the contents of the .env file so that it is not stored in your github repository?
+
+        To protect the contents of a file, add it to the .gitignore file so that it is not included when you push your project to Github. It is common to include the node_modules folder because it is so large and you can include other files as well, such as the .env file.

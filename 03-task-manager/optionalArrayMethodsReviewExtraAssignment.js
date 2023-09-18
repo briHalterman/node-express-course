@@ -126,7 +126,7 @@ object.behavior()
 // - Create a new array with only each person's last name
 // - Filter names that don't match the format "<first> <last>"
 //   - Should remove Tam because she has a double-space
-//   - Should remove Carlow because he has a middle-name
+//   - Should remove Carlos because he has a middle-initial
 //   - Should also remove names like:
 //     - "Timothy      Cook"
 //     - "Nick_Masters"
@@ -153,6 +153,62 @@ const names = [
   'Mariana Gomez',
   'Amy You'
 ];
+
+// create a new array with only each person's last name
+const displayLastNames = names.map((fullName) => {
+  const lastName = fullName.split(' ').pop();
+  return lastName
+});
+console.log(displayLastNames());
+
+// filter names that don't match the format "<first> <last>"
+// const format = // "<first> <last>"
+const formatFilter = names.filter((submittedName) => {
+  const splitName = submittedName.split(' ');
+  const formattedName = splitName.length === 2;
+  return formattedName;
+})
+console.log(formatFilter);
+
+// create a new array where everyone's name is converted to "Title Case"
+const toTitleCase = names.map((submittedName) => {
+  const lowerCaseName = submittedName.toLowerCase();
+  const splitName = lowerCaseName.split(' ');
+  const titleCaseSplitName = splitName.map((name) => {
+    const titledName = name.charAt(0).toUpperCase() + name.slice(1);
+    return titledName;
+  })
+  const titleCaseName = titleCaseSplitName.join(' ');
+  return titleCaseName;
+})
+console.log(toTitleCase)
+
+// boss challenge:
+// - remove names with the wrong format
+// - change it to "Title Case"
+// - remove people whose last name ends with z
+// - write a message asking them to sign up
+
+const nameArrayBossChallenge = names
+.filter((name) => {
+  const splitName = name.split(' ');
+  const formattedName = splitName.length === 2;
+  return formattedName;
+}).map((name) => {
+  const lowerCaseName = name.toLowerCase();
+  const splitName = lowerCaseName.split(' ');
+  const titleCaseNames = splitName.map((name) => {
+    const titledNames = name.charAt(0).toUpperCase() + name.slice(1);
+    return titledNames;
+  });
+  const titleCaseName = titleCaseNames.join(' ');
+  return titleCaseName;
+}).filter((name) => {
+  const lastLetterOfName = name.slice(-1);
+  const zEndingName = lastLetterOfName.toLowerCase === 'z';
+  return !zEndingName;
+}).map((name) => `Welcome, ${name}! Please sign up!`);
+console.log(nameArrayBossChallenge);
 
 ///////////////////////////////////////////////////////////////////////////////
 //// put your answers above if you wish to do the challenges on your own //////
@@ -202,17 +258,33 @@ const titledNames = names.map((name) => {
   // `.map` can transform each element 1:1
   const eachWordSeparated = name.split(" ")
 
+  // transform each word to title case
+
   const titledName = eachWordSeparated.map((inputWord) => {
     const inputLetters = inputWord.split("");
+
+    // what do we want to do with each letter?'
+    // if fist letter: capitalize
+    // otherwise lowercase
     const wordWithFirstLetterUppercase = inputLetters
-      .map((letter, idx) => (
-        idx === 0
-          ? letter.toUpperCase()
-          : letter.toLowerCase()
-      ))
-      .join("")
+
+    .map((letter, idx) => (
+      idx === 0
+        ? letter.toUpperCase()
+        : letter.toLowerCase()
+    )) // if else shorthand
+
+    // oneline arrow function
+    // .map((letter, idx) => (idx === 0 ? letter.toUpperCase() : letter.toLowerCase()))
+
+    // .map((letter, idx) => {
+    //   return (idx === 0 ? letter.toUpperCase() : letter.toLowerCase())
+    // })
+
+    .join("")
     return wordWithFirstLetterUppercase
   });
+  // return the reformatted ("title case") name
   return titledName.join(" ")
 });
 console.log('titledNames', titledNames);
@@ -310,7 +382,7 @@ const result = names
   // remove bad format
   .filter((name) => name.match(rightFormat))
   // change to title case
-  .map(transformNameIntoTitleCase)
+  .map(transformNameIntoTitleCase) // .map(name => transformNameIntoTitleCase(name))
   // remove names that end in "z"
   .filter((name) => {
     const lastLetter = name.slice(-1);
