@@ -5,3 +5,4 @@
 
 // That file has two methods, getAllProducts and getAllProductsStatic
 // The getAllProductsStatic method is just for experimentation
+
