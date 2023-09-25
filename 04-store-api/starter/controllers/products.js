@@ -23,7 +23,6 @@ const getAllProductsStatic = async (req, res) => {
     .select('name price')
     // .limit(10)
     // .skip(5)
-
     res.status(200)
     // .json({ msg: 'products testing route' })
     .json({ products, nbHits: products.length });
@@ -60,8 +59,15 @@ const getAllProducts = async (req, res) => {
             (match) => `-${operatorMap[match]}-`
         );
         // console.log(numericFilters);
-        console.log(filters);
-    }
+        // console.log(filters);
+        const options = ['price', 'rating'];
+        filters = filters.split(',').forEach((item) => {
+            const [field, operator, value] = item.split('-');
+            if (options.includes(field)) {
+                queryObject[field] = { [operator]: Number(value) };
+            }
+        });
+    };
 
     console.log(queryObject);
 
