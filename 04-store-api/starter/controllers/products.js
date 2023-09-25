@@ -17,8 +17,11 @@ const getAllProductsStatic = async (req, res) => {
         // name: 'albany ', // 'albany sectional',
         // name: {$regex: search, $options: 'i'},
     })
-    // .sort('-name price')
+    .sort('name')
     .select('name price')
+    .limit(10)
+    .skip(5)
+
     res.status(200)
     // .json({ msg: 'products testing route' })
     .json({ products, nbHits: products.length });
