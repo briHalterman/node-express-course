@@ -28,15 +28,18 @@ const app = express();
 const tasks = require('./routes/tasks');
 const connectDB = require('./db/connect');
 require('dotenv').config();
+const notFound = require('./middleware/not-found'); // set name
+const errorHandlerMiddleware = require('./middleware/error-handler'); // naming is the most difficult aspect of programming
 
 //  middleware
-
+app.use(express.static('./public'));
 app.use(express.json()); // to have data from req.body
 
 // routes
-app.get('/hello', (req, res) => {
-    res.send('Task Manager App')
-});
+
+// app.get('/hello', (req, res) => {
+//     res.send('Task Manager App');
+// });
 
 app.use('/api/v1/tasks', tasks);
 
@@ -46,7 +49,16 @@ app.use('/api/v1/tasks', tasks);
 // app.patch('/api/v1/tasks/:id')   - update task
 // app.delete('/api/v1/tasks/:id')  - delete task
 
-const port = 3000;
+app.use(notFound); // pass function into app.use()
+app.use(errorHandlerMiddleware);
+
+// Deployment
+// We are not going to deploy this project
+
+// const port = 3000;
+const port = process.env.PORT || 3000;
+
+// app.listen(port, console.log(`server is listening on port ${port}...`));
 
 // invoke connectDB and then only if successful spin up server
 const start = async () => {
@@ -59,5 +71,3 @@ const start = async () => {
 };
 
 start();
-
-// app.listen(port, console.log(`server is listening on port ${port}...`));

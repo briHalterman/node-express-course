@@ -1,0 +1,17 @@
+Answer the following questions:
+
+1. In this lesson, you created a middleware function called asyncWrapper. Why?
+
+    The middleware wrapper function eliminates the redundancy of repeadedly using try/catch blocks. In order to avoid try/catch while still using the await syntax, you can set up a try/catch block inside of a wrapper. This process of improving existing code without altering its functionality is called refractoring.
+
+2. Suppose that you want to make sure that both a status code and and error message are sent back to the user when they request the URL for a task that does not exist. Assume that you’ve created a CustomAPIError class and an error handler that references that class. Complete the code:
+
+    const getTask = asyncWrapper(async (req, res, next) => {
+        const { id: taskID } = req.params;
+        const task = await Task.findOne({ _id: taskID });
+        if (!task) {
+            // your code here
+            return next(createCustomError(`No task with id : ${taskID}`, 404)); // call next & pass in error
+        }
+        res.status(200).json({ task });
+    });
