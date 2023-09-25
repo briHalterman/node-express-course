@@ -9,25 +9,37 @@ const Product = require('../models/product');
 // The getAllProductsStatic method is just for experimentation
 const getAllProductsStatic = async (req, res) => {
     // throw new Error('testing async errors');
+    const search = 'ab';
     const products = await Product.find({ 
         // featured: true,
         // name: 'vase table',
-        page: '2'
+        // page: '2',
+        // name: 'albany ', // 'albany sectional',
+        name: {$regex: search, $options: 'i'},
     })
     res.status(200)
     // .json({ msg: 'products testing route' })
     .json({ products, nbHits: products.length });
 };
 
+// search based on featured status, company, name, price & rating
 const getAllProducts = async (req, res) => {
     // console.log(req.query);
-    const { featured } = req.query;
+    const { featured, company, name } = req.query;
     const queryObject = {};
 
     if (featured) {
         queryObject.featured = featured === 'true'? true : false // ternary operator
     }
+    if (company) {
+        queryObject.company = company;
+    }
+    if (name) {
+        // queryObject.name = name;
+        queryObject.name = { $regex: name, $options: 'i'}
+    }
     console.log(queryObject);
+
     // const products = await Product.find(req.query); 
     // // access to query string params in req.query --> object passed into find()
     const products = await Product.find(queryObject);
