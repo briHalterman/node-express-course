@@ -16,8 +16,10 @@ const getAllProductsStatic = async (req, res) => {
         // page: '2',
         // name: 'albany ', // 'albany sectional',
         // name: {$regex: search, $options: 'i'},
+        price: { $gt:30 }
     })
-    .sort('name')
+    // .sort('name')
+    .sort('price')
     .select('name price')
     // .limit(10)
     // .skip(5)
@@ -30,7 +32,7 @@ const getAllProductsStatic = async (req, res) => {
 // search based on featured status, company, name, price & rating
 const getAllProducts = async (req, res) => {
     // console.log(req.query);
-    const { featured, company, name, sort, fields } = req.query;
+    const { featured, company, name, sort, fields, numericFilters } = req.query;
     const queryObject = {};
 
     // FILTER
@@ -44,7 +46,27 @@ const getAllProducts = async (req, res) => {
         // queryObject.name = name;
         queryObject.name = { $regex: name, $options: 'i'}
     }
-    // console.log(queryObject);
+    if (numericFilters) {
+        const operatorMap = {
+            '>':'$gt',
+            '>=':'$gte',
+            '=':'$eq',
+            '<':'$lt',
+            '<=':'$lte'
+        };
+        const regEx = /\b(>|>=|=|<|<=)\b/g
+        let filters = numericFilters.replace(
+            regEx, 
+            (match) => `-${operatorMap[match]}-`
+        );
+        // console.log(numericFilters);
+        console.log(filters);
+    }
+
+    console.log(queryObject);
+
+    // privide an option for the user to search based on a numeric condition
+
 
     // const products = await Product.find(req.query); 
     // // access to query string params in req.query --> object passed into find()
