@@ -45,6 +45,7 @@ const getAllProducts = async (req, res) => {
         // queryObject.name = name;
         queryObject.name = { $regex: name, $options: 'i'}
     }
+    // privide an option for the user to search based on a numeric condition
     if (numericFilters) {
         const operatorMap = {
             '>':'$gt',
@@ -70,9 +71,6 @@ const getAllProducts = async (req, res) => {
     };
 
     console.log(queryObject);
-
-    // privide an option for the user to search based on a numeric condition
-
 
     // const products = await Product.find(req.query); 
     // // access to query string params in req.query --> object passed into find()
@@ -112,6 +110,9 @@ const getAllProducts = async (req, res) => {
         products, nbHits: products.length 
     });
 };
+
+// CONCEPT: THENABLES
+// The reason it works is that Product.find doesn’t return a Promise. It returns a thenable, which is something that works like a Promise, but has extended capabilities. The thenable allows the search to be further qualified. The Product.find call does not send anything to the Mongo database, until await (or .then) is called on the thenable. Then the fully qualified search is sent to the database, the Promise is resolved, and the products found by the search are returned.
 
 module.exports = {
     getAllProducts,
