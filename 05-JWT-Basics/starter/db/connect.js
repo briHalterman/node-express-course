@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+// Just so you don't forget the setup...
+const mongoose = require('mongoose');
 
 const connectDB = (url) => {
   return mongoose.connect(url, {
@@ -6,7 +7,7 @@ const connectDB = (url) => {
     useCreateIndex: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
-  })
-}
+  });
+};
 
-module.exports = connectDB
+module.exports = connectDB;
