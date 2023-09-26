@@ -1,3 +1,6 @@
+// set up two routes
+// JWT = jason web token
+
 require('dotenv').config(); // in oprder to access .env variables
 require('express-async-errors'); // we use this package so we don't have to set up our own async middleware
 
