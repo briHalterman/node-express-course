@@ -7,6 +7,7 @@ require('express-async-errors'); // we use this package so we don't have to set 
 const express = require('express'); // grab express from express
 const app = express(); // invoke express and set it equal to app
 
+const mainRouter = require('./routes/main');
 // import error handler and not-found middleware
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
@@ -14,6 +15,8 @@ const errorHandlerMiddleware = require('./middleware/error-handler');
 // middleware
 app.use(express.static('./public')); // serve static files, where front-end app lives
 app.use(express.json());  // for POST route access to req.body to get data
+
+app.use('/api/v1', mainRouter);
 
 // implement both middlewares
 app.use(notFoundMiddleware);
