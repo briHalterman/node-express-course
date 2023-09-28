@@ -7,13 +7,14 @@
 
 const CustomAPIError = require('../errors/custom-error'); // import custom error
 
+// check for username, password in post(login) request
 const login = async (req, res) => {
     const { username, password } = req.body;
     // mongoose validations
     // Joi
     // check in the controller
 
-    // check for username, password in post(login) request
+    // if username or password is not provided, throw custom error
     if(!username || !password) {
         throw new CustomAPIError('Please provide email and password', 400);
     };
