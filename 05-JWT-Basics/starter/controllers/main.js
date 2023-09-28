@@ -13,7 +13,11 @@ const login = async (req, res) => {
     // Joi
     // check in the controller
 
-    console.log(username, password);
+    // check for username, password in post(login) request
+    if(!username || !password) {
+        throw new CustomAPIError('Please provide email and password', 400);
+    };
+    // console.log(username, password);
     res.send('Fake Login/Register/Signup'); // normally there will be a difference between logging in vs registering
 };
 
