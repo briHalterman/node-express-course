@@ -1,3 +1,16 @@
+// Protecting Routes
+
+// To protect routes in your Express application, you create authentication middleware, which runs before the route handler for each protected request
+
+// The authentication middleware:
+// checks that the token is present with the HTTP request, typically as the bearer token in the Authentication header
+// validates the token cryptographically, making sure the signature matches the secret 
+// stores the user ID and perhaps other information about that user in the req.user hash, so that it can be used by the controller functions handling each request
+
+// Some routes are not protected by the authentication middleware, including in particular the logon route and registration routes and any pages that don’t require protection
+
+// For this lesson, we won’t store the user information, which means that the user is not registered and the password is not validated. Instead, the user enters an ID and password and a JWT token is created. Then the token is used to access the protected route.
+
 const jwt = require('jsonwebtoken');
 // const CustomAPIError = require('../errors/custom-error'); // check path
 const { UnauthenticatedError } = require('../errors')
