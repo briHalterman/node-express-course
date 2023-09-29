@@ -1,11 +1,29 @@
-// controllers
+// CONTROLLERS
 
+// if user provides correct credentials, we send back signed JWT
+// in order to access dashboard route, must provide same token
+
+// Big Picture:
+// JWT - way to exchange data between two parties
+// Integrity! JWT has security feature, if the token passes the validation, it means its the same token we sent to the client and the data wasn't tampered with
+// HTTP is stateless, server does not "remember" any previous request sent by the same client (front-end will always need to send JWT)
+
+// What is a JSON Web Token?
+// This information can be verified and trusted because it has been digitally signed
+// using secret & algorithm
+// header, payload & signature
+// Header - type & algorithm, Base64Url
+// Payload - this is where we'll place the information i.e. user id
+// Signature - where algorithm is used, incl. secret (kept on server)
+// The output is three Base64-URL strings separated by dots that can be easily passed in HTML & HTTP environments
+
+// check username, password in post(login) request
 // if exist create new JWT
 // send back to front-end
 
 // set up authentication so only the request with JWT can access the dashboard
-
 const jwt = require('jsonwebtoken');
+
 // const BadRequestError = require('../errors/custom-error'); // import custom error
 const { BadRequestError } = require('../errors');
 
@@ -26,8 +44,9 @@ const login = async (req, res) => {
     // just for demo, normally provided by DB!!!!
     const id = new Date().getDate()
     
-    // create new token
-    // try to kepp payload small, better for user experience
+    // create new token and send back to front-end
+    // try to keep payload small, better for user experience
+    // just for demo, in production use long, complex and unguessable password!!!!!!!!
     const token = jwt.sign({ id, username }, process.env.JWT_SECRET, {expiresIn: '30d'}); // don't send confidential info!
     
     // console.log(username, password);

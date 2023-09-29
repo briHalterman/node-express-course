@@ -17,6 +17,12 @@ const authenticationMiddleware = async (req, res, next) => {
     try {
         // run verify method, pass in token and pass in secret
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        // const luckyNumber = Math.floor(Math.random() * 100)
+        // res.status(200)
+        // .json({ 
+            // msg: `Hello, ${decoded.username}`,
+            // secret: `Here is your authorized data, your lucky number is ${luckyNumber}` 
+        // });
         const { id, username } = decoded; // from decoded
         req.user = { id, username } // create new object
         next();  // pass on to next middleware
