@@ -72,3 +72,16 @@ const checkToken = () => {
   }
 }
 checkToken()
+
+// A Comment On Security
+
+// The way the instructor uses the JWT is as follows: 
+// (1) The user logs in with id and password, and the JWT is returned in the body of the response 
+// (2) The web front end stores the JWT in local storage
+// (3) In subsequent requests, the JWT is inserted by the front end as a bearer token in the authorization header, so that it can be validated and so that the back end knows which user is making the request 
+
+// This is a common practice — and a very bad one! 
+
+// Never store sensitive information in local storage
+// It is common to introduce a vulnerability to a security attack called cross site scripting (XSS). If the application has an XSS vulnerability anywhere, the attacker can capture the token from local storage, and can then reuse that token to impersonate the user, doing any operations the user can do
+// YIKES!
