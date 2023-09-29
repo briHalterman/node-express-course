@@ -47,16 +47,23 @@ const dashboard = async (req, res) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        console.log(decoded); // comes from payload
+        // console.log(decoded);
+        const luckyNumber = Math.floor(Math.random() * 100);
+        res.status(200).json({ 
+            // msg: `Hello, John Doe`,
+            msg: `Hello, ${decoded.username}`, 
+            secret: `Here is your authorized data, your lucky number is ${luckyNumber}` 
+        });
     } catch (error) {
         throw new CustomAPIError('Not Authorized to Access This Route', 401) // 401 -- authentication error
     };
 
-    const luckyNumber = Math.floor(Math.random() * 100); // random number between 0 and 99
-    res.status(200).json({ 
-        msg: `Hello, John Doe`, 
-        secret: `Here is your authorized data, your lucky number is ${luckyNumber}` 
-    });
+    // move to try block
+    // const luckyNumber = Math.floor(Math.random() * 100); // random number between 0 and 99
+    // res.status(200).json({ 
+    //     msg: `Hello, John Doe`, 
+    //     secret: `Here is your authorized data, your lucky number is ${luckyNumber}` 
+    // });
 };
 
 module.exports = { 
