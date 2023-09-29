@@ -1,9 +1,27 @@
 // CONTROLLERS
 
+// check username, password in post(login) request
+// if exist create new JWT
+// send back to front-end
+
 // if user provides correct credentials, we send back signed JWT
 // in order to access dashboard route, must provide same token
 
-// Big Picture:
+// Concept: Authentication with JWT Tokens
+
+// user identifier and a password are stored by the application, typically in a database
+// if the application stores this information in MongoDB, you will have a User model
+// The model stores the user ID, a hash of the password, and perhaps other information
+
+// The password itself is never stored, because that would make the application a risky repository of user passwords. Instead, a cryptographic hash of the password is stored, and this information allows the user password to be validated at logon time, without storing the password itself
+
+// When the user logs in, the front end of the application needs to store a credential for use in subsequent requests — otherwise the user would have to login for every protected request
+// One type of credential that is often used for REST requests is a JSON web token (JWT)
+// cryptographically signed by the server, using a server maintained secret, so it can’t be counterfeited
+// contains information about which user is logged in
+// not human readable, but it is not encrypted either, so you should never put sensitive information in it, especially not the password
+// When the user is registered in MongoDB, a unique ID is created, just as it is for every MongoDB entry. This ID is typically stored in the token
+
 // JWT - way to exchange data between two parties
 // Integrity! JWT has security feature, if the token passes the validation, it means its the same token we sent to the client and the data wasn't tampered with
 // HTTP is stateless, server does not "remember" any previous request sent by the same client (front-end will always need to send JWT)
@@ -12,14 +30,10 @@
 // This information can be verified and trusted because it has been digitally signed
 // using secret & algorithm
 // header, payload & signature
-// Header - type & algorithm, Base64Url
+// Header - type & algorithm
 // Payload - this is where we'll place the information i.e. user id
 // Signature - where algorithm is used, incl. secret (kept on server)
 // The output is three Base64-URL strings separated by dots that can be easily passed in HTML & HTTP environments
-
-// check username, password in post(login) request
-// if exist create new JWT
-// send back to front-end
 
 // set up authentication so only the request with JWT can access the dashboard
 const jwt = require('jsonwebtoken');
