@@ -6,7 +6,7 @@ const resultDOM = document.querySelector('.result')
 const btnDOM = document.querySelector('#data')
 const tokenDOM = document.querySelector('.token')
 
-formDOM.addEventListener('submit', async (e) => {
+formDOM.addEventListener('submit', async (e) => { // listening for submit event
   formAlertDOM.classList.remove('text-success')
   tokenDOM.classList.remove('text-success')
 
@@ -14,8 +14,10 @@ formDOM.addEventListener('submit', async (e) => {
   const username = usernameInputDOM.value
   const password = passwordInputDOM.value
 
+  // try/catch
   try {
-    const { data } = await axios.post('/api/v1/login', { username, password })
+    // axios library with post request
+    const { data } = await axios.post('/api/v1/login', { username, password }) // send post request to login, passing in username & password
 
     formAlertDOM.style.display = 'block'
     formAlertDOM.textContent = data.msg
@@ -24,7 +26,8 @@ formDOM.addEventListener('submit', async (e) => {
     usernameInputDOM.value = ''
     passwordInputDOM.value = ''
 
-    localStorage.setItem('token', data.token)
+    // if successful
+    localStorage.setItem('token', data.token) // right away save token in local storage
     resultDOM.innerHTML = ''
     tokenDOM.textContent = 'token present'
     tokenDOM.classList.add('text-success')
@@ -32,7 +35,7 @@ formDOM.addEventListener('submit', async (e) => {
     formAlertDOM.style.display = 'block'
     formAlertDOM.textContent = error.response.data.msg
     localStorage.removeItem('token')
-    resultDOM.innerHTML = ''
+    resultDOM.innerHTML = '' // remove token
     tokenDOM.textContent = 'no token present'
     tokenDOM.classList.remove('text-success')
   }
@@ -41,13 +44,14 @@ formDOM.addEventListener('submit', async (e) => {
   }, 2000)
 })
 
-btnDOM.addEventListener('click', async () => {
+btnDOM.addEventListener('click', async () => { // button, click event listener
   const token = localStorage.getItem('token')
   try {
-    const { data } = await axios.get('/api/v1/dashboard', {
+    const { data } = await axios.get('/api/v1/dashboard', { // get request to dashboard
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      // idea is exactly the same for fetch etc.
     })
     resultDOM.innerHTML = `<h5>${data.msg}</h5><p>${data.secret}</p>`
 
@@ -68,3 +72,16 @@ const checkToken = () => {
   }
 }
 checkToken()
+
+// A Comment On Security
+
+// The way the instructor uses the JWT is as follows: 
+// (1) The user logs in with id and password, and the JWT is returned in the body of the response 
+// (2) The web front end stores the JWT in local storage
+// (3) In subsequent requests, the JWT is inserted by the front end as a bearer token in the authorization header, so that it can be validated and so that the back end knows which user is making the request 
+
+// This is a common practice — and a very bad one! 
+
+// Never store sensitive information in local storage
+// It is common to introduce a vulnerability to a security attack called cross site scripting (XSS). If the application has an XSS vulnerability anywhere, the attacker can capture the token from local storage, and can then reuse that token to impersonate the user, doing any operations the user can do
+// YIKES!
